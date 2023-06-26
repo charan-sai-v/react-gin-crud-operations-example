@@ -85,7 +85,7 @@ func getEmployees(c *gin.Context) {
 // getEmployeeByID
 func getEmployeeById(c *gin.Context) {
 	// id from params
-	id, _ := primitive.ObjectIDFromHex(c.Param("_id"))
+	id, _ := primitive.ObjectIDFromHex(c.Param("id"))
 
 	var employee Employee
 	if err := db.Collection(CollectionName).FindOne(context.Background(), Employee{ID: id}).Decode(&employee); err != nil {
@@ -114,7 +114,7 @@ func createEmployee(c *gin.Context) {
 // update EmployeeByID
 func updateEmployee(c *gin.Context) {
 	// get id from param
-	id, _ := primitive.ObjectIDFromHex(c.Param("_id"))
+	id, _ := primitive.ObjectIDFromHex(c.Param("id"))
 	// from client employee
 	var employee Employee
 
@@ -142,7 +142,7 @@ func updateEmployee(c *gin.Context) {
 // Delete Employee
 func deleteEmployee(c *gin.Context) {
 	// get id from param
-	id, _ := primitive.ObjectIDFromHex(c.Param("_id"))
+	id, _ := primitive.ObjectIDFromHex(c.Param("id"))
 
 	result, err := db.Collection(CollectionName).DeleteOne(context.Background(), Employee{ID: id})
 	if err != nil {
